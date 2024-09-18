@@ -20,11 +20,14 @@ public class Solution {
            int prefixXorOfI = prefix.get(i);
            Node maxXorPair = searchBestCandidat(prefixXorOfI,dummy);
 
+            logLn("at prefixXor["+i+"] best match for ("+prefixXorOfI+")="+maxXorPair.value+"... it has an index of :"+maxXorPair.index);
           
            insert(prefixXorOfI,i,dummy);
            int currentXor = prefixXorOfI ^ maxXorPair.value;
+           logLn("currentXor="+currentXor+" max Xor is:"+max);
 
            if(currentXor<max) continue;
+        
 
            if( max == currentXor)
            {
@@ -38,6 +41,14 @@ public class Solution {
 
            max = currentXor;
 
+           if(prefixXorOfI>max)
+           {
+            minIndex = 0;
+            maxIndex = i;
+            max = prefixXorOfI;
+            continue;
+           }
+
            minIndex = Math.min( maxXorPair.index+1,i);
            maxIndex = Math.max( maxXorPair.index+1,i);   
         }
@@ -48,7 +59,18 @@ public class Solution {
         return ans;
     }
 
-  
+    public Integer calculateXor(ArrayList<Integer> A)
+    {
+
+        Integer a = A.get(0);
+
+        for(int i =1; i< A.size();i++)
+        {
+            a = a^ A.get(i);
+        }
+
+        return a;
+    }
 
     private void insert(int a, int index , Node root)
     {
@@ -78,7 +100,7 @@ public class Solution {
         
     }
 
-    private void logLn(String s)
+    public void logLn(String s)
     {
         
         System.out.println(s);
@@ -130,7 +152,7 @@ public class Solution {
 
     }
 
-    private ArrayList<Integer> getPrefixXor(ArrayList<Integer>A)
+    public ArrayList<Integer> getPrefixXor(ArrayList<Integer>A)
     {
         ArrayList<Integer> result = new ArrayList<Integer>();
 

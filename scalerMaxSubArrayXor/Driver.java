@@ -30,8 +30,12 @@ public class Driver {
        // integers.add(33);integers.add(29);integers.add(18);
 
        //29,13,9,34,32,15,30,9
-       integers= Driver.input("29,13,9,34,32,15,30,9");
-     
+       //integers= Driver.input("1,2,3,4");//
+       integers = Driver.input("29,13,9,34,32,15,30,9");
+        
+       s.logLn("1-4:"+s.calculateXor(Driver.input("29,13,9,34")));
+       s.logLn("5-8:"+s.calculateXor(Driver.input("32,15,30,9")));
+   //  print(s.getPrefixXor(integers));
         print(s.solve(integers));
     }
     
