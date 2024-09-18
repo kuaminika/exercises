@@ -7,6 +7,12 @@ public class Solution {
 
 
         ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(A.size() ==1)
+        {
+            ans.add(1);
+            ans.add(1);
+            return ans;
+        }
 
         ArrayList<Integer> prefix = getPrefixXor(A);
         Node dummy = new Node();
@@ -14,19 +20,37 @@ public class Solution {
         int max= 0;
         int minIndex = 0;
         int maxIndex = 0;
-
-        for(int i = 0;i<n;i++  )
+        insert(prefix.get(0),0,dummy);
+        for(int i = 1;i<n;i++  )
         {   
            int prefixXorOfI = prefix.get(i);
            Node maxXorPair = searchBestCandidat(prefixXorOfI,dummy);
 
-            logLn("at prefixXor["+i+"] best match for ("+prefixXorOfI+")="+maxXorPair.value+"... it has an index of :"+maxXorPair.index);
+            logLn(" At prefixXor["+i+"]="+prefixXorOfI+" best match found is:"+maxXorPair.value+". It has an index of :"+maxXorPair.index);
           
            insert(prefixXorOfI,i,dummy);
+ 
            int currentXor = prefixXorOfI ^ maxXorPair.value;
-           logLn("currentXor="+currentXor+" max Xor is:"+max);
+           log("("+ prefixXorOfI+" ^ "+ maxXorPair.value+")="+currentXor+"  --> [currentXor="+currentXor+" max Xor is:"+max+"]");
 
-           if(currentXor<max) continue;
+           if(currentXor<max)
+           {
+             logLn(".Final max xor ="+max);
+
+             
+             if(prefixXorOfI>max)
+             {
+                    log("  prefixXor["+i+"]="+prefixXorOfI+" > "+max+"..");
+                    minIndex = 0;
+                    maxIndex = i;
+                    max = prefixXorOfI;
+                    logLn(".Final max xor ="+max);
+                    continue;
+             }
+            
+
+             continue;
+           }
         
 
            if( max == currentXor)
@@ -40,14 +64,17 @@ public class Solution {
            }
 
            max = currentXor;
-
            if(prefixXorOfI>max)
            {
-            minIndex = 0;
-            maxIndex = i;
-            max = prefixXorOfI;
-            continue;
+                log("  prefixXor["+i+"]="+prefixXorOfI+" > "+max+"..");
+                minIndex = 0;
+                maxIndex = i;
+                max = prefixXorOfI;
+                logLn(".Final max xor ="+max);
+                continue;
            }
+           
+           logLn(".Final max xor ="+max);
 
            minIndex = Math.min( maxXorPair.index+1,i);
            maxIndex = Math.max( maxXorPair.index+1,i);   
@@ -108,7 +135,7 @@ public class Solution {
     private void log(String s)
     {
         
-      //  System.out.print(s);
+        System.out.print(s);
     }
 
     private Node searchBestCandidat(int a ,Node root)
