@@ -25,26 +25,21 @@ public class Solution {
         {   
            int prefixXorOfI = prefix.get(i);
            Node maxXorPair = searchBestCandidat(prefixXorOfI,dummy);
-
-            logLn(" At prefixXor["+i+"]="+prefixXorOfI+" best match found is:"+maxXorPair.value+". It has an index of :"+maxXorPair.index);
+ 
           
            insert(prefixXorOfI,i,dummy);
  
-           int currentXor = prefixXorOfI ^ maxXorPair.value;
-           log("("+ prefixXorOfI+" ^ "+ maxXorPair.value+")="+currentXor+"  --> [currentXor="+currentXor+" max Xor is:"+max+"]");
+           int currentXor = prefixXorOfI ^ maxXorPair.value; 
 
            if(currentXor<max)
-           {
-             logLn(".Final max xor ="+max);
+           { 
 
              
              if(prefixXorOfI>max)
-             {
-                    log("  prefixXor["+i+"]="+prefixXorOfI+" > "+max+"..");
+             { 
                     minIndex = 0;
                     maxIndex = i;
-                    max = prefixXorOfI;
-                    logLn(".Final max xor ="+max);
+                    max = prefixXorOfI; 
                     continue;
              }
             
@@ -65,16 +60,13 @@ public class Solution {
 
            max = currentXor;
            if(prefixXorOfI>max)
-           {
-                log("  prefixXor["+i+"]="+prefixXorOfI+" > "+max+"..");
+           { 
                 minIndex = 0;
                 maxIndex = i;
-                max = prefixXorOfI;
-                logLn(".Final max xor ="+max);
+                max = prefixXorOfI; 
                 continue;
            }
-           
-           logLn(".Final max xor ="+max);
+            
 
            minIndex = Math.min( maxXorPair.index+1,i);
            maxIndex = Math.max( maxXorPair.index+1,i);   
@@ -127,16 +119,16 @@ public class Solution {
         
     }
 
-    public void logLn(String s)
-    {
+    // public void logLn(String s)
+    // {
         
-        System.out.println(s);
-    }
-    private void log(String s)
-    {
+    //     System.out.println(s);
+    // }
+    // private void log(String s)
+    // {
         
-        System.out.print(s);
-    }
+    //     System.out.print(s);
+    // }
 
     private Node searchBestCandidat(int a ,Node root)
     {

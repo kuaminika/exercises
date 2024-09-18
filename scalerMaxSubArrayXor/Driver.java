@@ -17,7 +17,7 @@ public class Driver {
     //    integers = Driver.input("29,13,9,34,32,15,30,9");
         integers = Driver.input("22,4,5,21,22");
         print( s.getPrefixXor(integers));
-        s.logLn("");
+        logLn("");
      //  s.logLn("1-4:"+s.calculateXor(Driver.input("29,13,9,34")));
      //  s.logLn("5-8:"+s.calculateXor(Driver.input("32,15,30,9")));
      //  print(s.getPrefixXor(integers));
@@ -38,6 +38,16 @@ public class Driver {
     }
 
 
+    public static void logLn(String s)
+     {
+        
+        System.out.println(s);
+    }
+    private static void log(String s)
+    {
+        
+        System.out.print(s);
+    }
     public static void print(ArrayList<Integer> rList)
     {
         for (Integer iterable_element : rList) {
