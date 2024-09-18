@@ -1,12 +1,31 @@
 package scalerMaxSubArrayXor;
 
 import java.util.ArrayList;
+/**
+ * Given an array, A of integers of size N. Find the subarray AL, AL+1, AL+2, ... AR with 1<=L<=R<=N, which has maximum XOR value.
+
+    NOTE: If there are multiple subarrays with the same maximum value, return the subarray with minimum length. If the length is the same, return the subarray with the minimum starting index.
+
+
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 
 public class Solution {
     public ArrayList<Integer> solve(ArrayList<Integer> A) {
 
 
         ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(A.size() ==1)
+        {
+            ans.add(1);
+            ans.add(1);
+            return ans;
+        }
 
         ArrayList<Integer> prefix = getPrefixXor(A);
         Node dummy = new Node();
@@ -14,17 +33,33 @@ public class Solution {
         int max= 0;
         int minIndex = 0;
         int maxIndex = 0;
-
-        for(int i = 0;i<n;i++  )
+        insert(prefix.get(0),0,dummy);
+        for(int i = 1;i<n;i++  )
         {   
            int prefixXorOfI = prefix.get(i);
            Node maxXorPair = searchBestCandidat(prefixXorOfI,dummy);
-
+ 
           
            insert(prefixXorOfI,i,dummy);
-           int currentXor = prefixXorOfI ^ maxXorPair.value;
+ 
+           int currentXor = prefixXorOfI ^ maxXorPair.value; 
 
-           if(currentXor<max) continue;
+           if(currentXor<max)
+           { 
+
+             
+             if(prefixXorOfI>max)
+             { 
+                    minIndex = 0;
+                    maxIndex = i;
+                    max = prefixXorOfI; 
+                    continue;
+             }
+            
+
+             continue;
+           }
+        
 
            if( max == currentXor)
            {
@@ -37,6 +72,14 @@ public class Solution {
            }
 
            max = currentXor;
+           if(prefixXorOfI>max)
+           { 
+                minIndex = 0;
+                maxIndex = i;
+                max = prefixXorOfI; 
+                continue;
+           }
+            
 
            minIndex = Math.min( maxXorPair.index+1,i);
            maxIndex = Math.max( maxXorPair.index+1,i);   
@@ -48,7 +91,18 @@ public class Solution {
         return ans;
     }
 
-  
+    public Integer calculateXor(ArrayList<Integer> A)
+    {
+
+        Integer a = A.get(0);
+
+        for(int i =1; i< A.size();i++)
+        {
+            a = a^ A.get(i);
+        }
+
+        return a;
+    }
 
     private void insert(int a, int index , Node root)
     {
@@ -78,16 +132,16 @@ public class Solution {
         
     }
 
-    private void logLn(String s)
-    {
+    // public void logLn(String s)
+    // {
         
-        System.out.println(s);
-    }
-    private void log(String s)
-    {
+    //     System.out.println(s);
+    // }
+    // private void log(String s)
+    // {
         
-      //  System.out.print(s);
-    }
+    //     System.out.print(s);
+    // }
 
     private Node searchBestCandidat(int a ,Node root)
     {
@@ -130,7 +184,7 @@ public class Solution {
 
     }
 
-    private ArrayList<Integer> getPrefixXor(ArrayList<Integer>A)
+    public ArrayList<Integer> getPrefixXor(ArrayList<Integer>A)
     {
         ArrayList<Integer> result = new ArrayList<Integer>();
 

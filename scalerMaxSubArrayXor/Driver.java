@@ -14,24 +14,13 @@ public class Driver {
         integers.add(3);
 */
 
-        //37,24,17,26,37,10,15,35,7,33
-        // integers.add(37);
-        // integers.add(24);
-        // integers.add(17);
-        // integers.add(26);
-        // integers.add(37);
-        // integers.add(10);
-        // integers.add(15);
-        // integers.add(35);
-        // integers.add(7); 
-        // integers.add(33);
-
-        //33 29 18
-       // integers.add(33);integers.add(29);integers.add(18);
-
-       //29,13,9,34,32,15,30,9
-       integers= Driver.input("29,13,9,34,32,15,30,9");
-     
+    //    integers = Driver.input("29,13,9,34,32,15,30,9");
+        integers = Driver.input("22,4,5,21,22");
+        print( s.getPrefixXor(integers));
+        logLn("");
+     //  s.logLn("1-4:"+s.calculateXor(Driver.input("29,13,9,34")));
+     //  s.logLn("5-8:"+s.calculateXor(Driver.input("32,15,30,9")));
+     //  print(s.getPrefixXor(integers));
         print(s.solve(integers));
     }
     
@@ -49,6 +38,16 @@ public class Driver {
     }
 
 
+    public static void logLn(String s)
+     {
+        
+        System.out.println(s);
+    }
+    private static void log(String s)
+    {
+        
+        System.out.print(s);
+    }
     public static void print(ArrayList<Integer> rList)
     {
         for (Integer iterable_element : rList) {
