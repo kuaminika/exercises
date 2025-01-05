@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Arrays;
 
-public class Solution {
+public class SolutionWithLog {
 
         /**
      * 
@@ -13,12 +13,17 @@ public class Solution {
 
         Return the minimum cuts needed for a palindrome partitioning of A.
      */
+    LogTool  l = new LogTool();
     public int solve(String str) {       
 
         
-       return 1;
+      
+
+      return 1;
     }
 
 
+
+     
     
 }
