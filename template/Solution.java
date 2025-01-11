@@ -7,13 +7,8 @@ import java.util.Arrays;
 
 public class Solution {
 
-        /**
-     * 
-     * Given a string A, partition A such that every substring of the partition is a palindrome.
-
-        Return the minimum cuts needed for a palindrome partitioning of A.
-     */
-    public int solve(String str) {       
+   
+    public int solve( ArrayList<Integer> str,int a ) {       
 
         
        return 1;
